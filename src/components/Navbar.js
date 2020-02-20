@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div>
-      this is a navbar
-    </div>
-  )
+    <nav>
+      <Link to="/">Hacker News</Link>
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;

@@ -6,24 +6,20 @@ import Home from "./components/Home";
 
 const Post = lazy(() => import("./components/Post"));
 
-function NotFound() {
-  return <h1>Not found</h1>;
-}
+const NotFound = () => <h1>Not found</h1>;
 
 function App() {
   return (
-    <div>
+    <Router>
       <Navbar />
       <Suspense fallback={<div />}>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/post/:id?" component={Post} />
-            <Route component={NotFound} />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/post/:id?" component={Post} />
+          <Route component={NotFound} />
+        </Switch>
       </Suspense>
-    </div>
+    </Router>
   );
 }
 

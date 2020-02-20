@@ -4,11 +4,59 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffd28933;
+}
+
+#root {
+  padding-bottom: 15px;
+  height: 100vh;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a {
+  position: relative;
+  letter-spacing: 0.1em;
+  font-size: 1.3em;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  background: #ff6600;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+#root nav {
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #ff6600;
 }
 
 .posts {
   display: flex;
   flex-direction: column;
+  max-width: 530px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 code {
