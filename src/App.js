@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+
+const Post = lazy(() => import("./components/Post"));
+
+function NotFound() {
+  return <h1>Not found</h1>;
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      <Suspense fallback={<div />}>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/post/:id?" component={Post} />
+            <Route component={NotFound} />
+          </Switch>
+        </Router>
+      </Suspense>
     </div>
   );
 }
