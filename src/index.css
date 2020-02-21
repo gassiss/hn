@@ -1,3 +1,4 @@
+/* global stuff */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
@@ -21,6 +22,13 @@ a {
   color: inherit;
   text-decoration: none;
   font-weight: 600;
+}
+
+/* navbar */
+#root nav {
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #ff6600;
 }
 
 nav a {
@@ -47,12 +55,7 @@ nav a::after {
   }
 }
 
-#root nav {
-  padding: 10px;
-  margin-bottom: 10px;
-  color: #ff6600;
-}
-
+/* Post list stuff */
 .posts {
   display: flex;
   flex-direction: column;
@@ -69,9 +72,9 @@ nav a::after {
   border-radius: 10px;
   margin: 8px 10px;
   padding: 10px;
-  background-color: #ffd28955;
+  background-color: #ffe9c4;
   transition: transform 0.2s ease-in-out;
-  box-shadow: 5px 5px 8px #cccc;
+  box-shadow: 5px 5px 8px #ddd;
 }
 
 @media (hover) {
@@ -123,5 +126,44 @@ nav a::after {
     color: #011627;
     cursor: pointer;
   }
+}
+
+/* post page stuff */
+
+.post-page {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.post-page > h3 {
+  display: inline-block;
+  margin: 0 10px 0 0;
+  color: #011627;
+}
+
+.post-page > a {
+  font-size: 0.8em;
+  color: #01162799;
+}
+
+.post-page > p {
+  font-size: 0.8em;
+  margin: 5px 0 20px 10px;
+  color: #01162799;
+}
+
+@media (hover) {
+  .post-page > p > u:hover {
+    cursor: pointer;
+    color: #011627;
+  }
+}
+
+.post-page > textarea {
+  resize: vertical;
+  width: 100%;
 }
 

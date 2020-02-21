@@ -2,28 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-function PostCard({ title, postId, source, points, author, comments }) {
-  // title -> should go to source
-  // source -> should go to source
-  // points
-  // author -> should go to user if implemented
-  // comments -> should open Post with comments
+import timeSince from "../utils/timeSince";
+
+function PostCard({ title, id, url, time, descendants, score, author }) {
   return (
     <div className="card">
       <div className="card-header">
-        <Link to={`/post/${postId}`}>{title}</Link>
+        <Link to={`/post/${id}`}>{title}</Link>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
         <a href="" className="card-header-source">
           {" "}
-          ({source})
+          ({url})
         </a>
       </div>
       <div className="card-footer">
-        <p>{points} points</p>
         <p>
-          by <u>{author}</u> |
+          {score} points by <u>{author}</u> {timeSince(time)} |
         </p>
-        <Link to={`/post/${postId}`}>{comments.length} comments</Link>
+        <Link to={`/post/${id}`}>{descendants} comments</Link>
       </div>
     </div>
   );
@@ -31,46 +27,65 @@ function PostCard({ title, postId, source, points, author, comments }) {
 
 PostCard.propTypes = {
   title: PropTypes.string.isRequired,
-  source: PropTypes.string.isRequired,
-  points: PropTypes.number.isRequired,
+  url: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
-  comments: PropTypes.arrayOf(PropTypes.number).isRequired,
-  postId: PropTypes.number.isRequired
+  descendants: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired
 };
 
 const mockPosts = [
   {
-    postId: 1,
+    id: 1,
     title: "List of coffee shops worth checking out in NY",
-    source: "www.centralperk.com",
-    points: 412,
-    comments: [1, 2, 3],
-    author: "Someone from friends"
+    url: "www.centralperk.com",
+    score: 412,
+    descendants: 3,
+    kids: [1, 2, 3],
+    author: "Someone from friends",
+    time: 1582223692
   },
   {
-    postId: 2,
+    id: 2,
     title: "A complete guide to beet farming",
-    source: "www.getrichquick.com",
-    points: 200,
-    comments: [4, 5],
-    author: "Dwight Schrute"
+    url: "www.getrichquick.com",
+    score: 200,
+    descendants: 2,
+    kids: [4, 5],
+    author: "Dwight Schrute",
+    time: 1582223692
   },
   {
-    postId: 3,
+    id: 3,
     title: "Mordor is not that hot",
-    source: "www.gofigure.com",
-    points: 999,
-    comments: [6, 7, 8, 9, 10, 11, 12],
-    author: "Sauron"
+    url: "www.gofigure.com",
+    score: 999,
+    descendants: 7,
+    kids: [6, 7, 8, 9, 10, 11, 12],
+    author: "Sauron",
+    time: 1582223692
+  },
+  {
+    id: 4,
+    title: "1000 ways to cook shrimp",
+    url: "www.bubbagumpshrimpcompany.com",
+    score: 2098,
+    descendants: 4,
+    kids: [13, 14, 15, 16],
+    author: "Forrest Gump",
+    time: 1582223692
   }
 ];
 
 function Home() {
+  document.title = "HN Clone";
+
   return (
     <>
       <div className="posts">
         {mockPosts.map(post => (
-          <PostCard key={post.postId} {...post} />
+          <PostCard key={post.id} {...post} />
         ))}
       </div>
     </>
