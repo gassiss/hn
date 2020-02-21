@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import timeSince from "../utils/timeSince";
@@ -13,6 +13,32 @@ const mockPost = {
   by: "Sauron"
 };
 
+function Comment({ comment }) {
+  const [isExpanded, setExpanded] = useState(true);
+  const { by, time, text, comments } = comment;
+
+  return (
+    <div className="comment">
+      <h4>
+        {by} {timeSince(time)}
+      </h4>
+      <span onClick={() => setExpanded(f => !f)}>[{isExpanded ? "-" : "+"}]</span>
+      <p className={isExpanded ? "" : "hidden"}>{text}</p>
+      <div className={`indent${isExpanded ? "" : " hidden"}`}>
+        {comments.map(comment => (
+          <Comment comment={comment} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Comments({ comments }) {
+  if (!comments) return null;
+
+  return comments.map(comment => <Comment comment={comment} />);
+}
+
 function Post() {
   const { id } = useParams();
   const { title, url, time, score, by } = mockPost;
@@ -26,7 +52,7 @@ function Post() {
       by: "someguy",
       time: 1582223692,
       text: "some text",
-      kids: [
+      comments: [
         {
           id: 2,
           by: "some other guy",
@@ -63,7 +89,7 @@ function Post() {
       </p>
       <textarea rows="5" cols="60"></textarea>
       <button>add comment</button>
-      <div>comments go here</div>
+      <Comments comments={comments} />
     </div>
   );
 }

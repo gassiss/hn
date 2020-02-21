@@ -2,8 +2,8 @@ import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
 
+const Home = lazy(() => import("./components/Home"));
 const Post = lazy(() => import("./components/Post"));
 
 const NotFound = () => <h1>Not found</h1>;

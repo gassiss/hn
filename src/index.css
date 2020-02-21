@@ -73,14 +73,7 @@ nav a::after {
   margin: 8px 10px;
   padding: 10px;
   background-color: #ffe9c4;
-  transition: transform 0.2s ease-in-out;
   box-shadow: 5px 5px 8px #ddd;
-}
-
-@media (hover) {
-  .posts .card:hover {
-    transform: scale(1.05);
-  }
 }
 
 .posts .card .card-header-source {
@@ -165,5 +158,30 @@ nav a::after {
 .post-page > textarea {
   resize: vertical;
   width: 100%;
+}
+
+/* post page comments stuff */
+
+.comment > h4 {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 0.85em;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.comment > span {
+  font-size: 0.9em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.comment .hidden {
+  display: none;
+}
+
+.comment .indent {
+  border-left: 1px solid black;
+  padding-left: 20px;
 }
 

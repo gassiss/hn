@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import timeSince from "../utils/timeSince";
 
-function PostCard({ title, id, url, time, descendants, score, author }) {
+function PostCard({ title, id, url, time, descendants, score, by }) {
   return (
     <div className="card">
       <div className="card-header">
@@ -17,7 +17,7 @@ function PostCard({ title, id, url, time, descendants, score, author }) {
       </div>
       <div className="card-footer">
         <p>
-          {score} points by <u>{author}</u> {timeSince(time)} |
+          {score} points by <u>{by}</u> {timeSince(time)} |
         </p>
         <Link to={`/post/${id}`}>{descendants} comments</Link>
       </div>
@@ -29,7 +29,7 @@ PostCard.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
-  author: PropTypes.string.isRequired,
+  by: PropTypes.string.isRequired,
   descendants: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   time: PropTypes.number.isRequired
@@ -43,7 +43,7 @@ const mockPosts = [
     score: 412,
     descendants: 3,
     kids: [1, 2, 3],
-    author: "Someone from friends",
+    by: "Someone from friends",
     time: 1582223692
   },
   {
@@ -53,7 +53,7 @@ const mockPosts = [
     score: 200,
     descendants: 2,
     kids: [4, 5],
-    author: "Dwight Schrute",
+    by: "Dwight Schrute",
     time: 1582223692
   },
   {
@@ -63,7 +63,7 @@ const mockPosts = [
     score: 999,
     descendants: 7,
     kids: [6, 7, 8, 9, 10, 11, 12],
-    author: "Sauron",
+    by: "Sauron",
     time: 1582223692
   },
   {
@@ -73,7 +73,7 @@ const mockPosts = [
     score: 2098,
     descendants: 4,
     kids: [13, 14, 15, 16],
-    author: "Forrest Gump",
+    by: "Forrest Gump",
     time: 1582223692
   }
 ];
